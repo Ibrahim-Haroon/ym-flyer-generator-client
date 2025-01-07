@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "start": "http-server -c-1",
-    "dev": "live-server --port=8080 --no-browser"
+    "dev": "live-server --port=5000 --no-browser"
   },
   "keywords": [],
   "author": "Ibrahim Haroon",
