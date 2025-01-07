@@ -57,7 +57,10 @@
         <div class="modal-content">
             <span class="close-modal">&times;</span>
             <img id="modalImage" src="" alt="Preview">
-            <button id="downloadBtn" class="btn btn-primary">Download</button>
+            <div class="preview-actions">
+                <button id="editBtn" class="btn btn-primary">Edit</button>
+                <button id="downloadBtn" class="btn btn-primary">Download</button>
+            </div>
         </div>
     </div>
 </div>
@@ -109,12 +112,6 @@
 
 <!-- Scripts -->
 <!-- Before closing body tag -->
-<script src="js/utils/storage.js"></script>
-<script src="js/utils/ui.js"></script>
-<script src="js/api/config.js"></script>
-<script src="js/api/flyer.js"></script>
-<script src="js/api/keys.js"></script>
-<script src="js/pages/settings.js"></script>
-<script src="js/pages/home.js"></script>
+<script type="module" src="js/pages/home.js"></script>
 </body>
 </html>
