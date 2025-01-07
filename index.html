@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>YM Flyer Generator - Login</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bcryptjs/2.4.3/bcrypt.min.js"></script>
+</head>
+<body>
+<div class="container auth-container">
+    <div class="auth-tabs">
+        <button class="auth-tab active" data-tab="login">Login</button>
+        <button class="auth-tab" data-tab="register">Register</button>
+    </div>
+
+    <!-- Login Form -->
+    <form id="loginForm" class="auth-form">
+        <div class="form-group">
+            <input type="text" class="input" id="loginUsername" placeholder="Username" required>
+        </div>
+        <div class="form-group">
+            <input type="password" class="input" id="loginPassword" placeholder="Password" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+
+    <!-- Register Form (hidden by default) -->
+    <form id="registerForm" class="auth-form" style="display: none;">
+        <div class="form-group">
+            <input type="text" class="input" id="registerUsername" placeholder="Username" required>
+        </div>
+        <div class="form-group">
+            <input type="email" class="input" id="registerEmail" placeholder="Email" required>
+        </div>
+        <div class="form-group">
+            <input type="password" class="input" id="registerPassword" placeholder="Password" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+</div>
+
+<script src="js/utils/crypto.js"></script>
+<script src="js/utils/storage.js"></script>
+<script src="js/api/config.js"></script>
+<script src="js/api/auth.js"></script>
+<script src="js/pages/auth.js"></script>
+</body>
+</html>
