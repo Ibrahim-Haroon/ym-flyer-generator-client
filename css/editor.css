@@ -1,0 +1,283 @@
+/* Editor Container */
+.editor-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--background);
+    overflow: hidden;
+    padding-top: 60px;
+}
+
+/* Canvas Area */
+.editor-canvas {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    touch-action: none; /* Prevents default touch behaviors */
+}
+
+.canvas-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.background-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.editor-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Allow interaction with elements below */
+}
+
+/* Canvas Controls */
+.canvas-controls {
+    position: absolute;
+    bottom: var(--spacing-lg);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm);
+    background-color: var(--surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    z-index: 10;
+}
+
+/* Floating Action Button */
+.fab-button {
+    position: fixed;
+    right: var(--spacing-lg);
+    bottom: calc(var(--spacing-lg) * 4); /* Above bottom sheet peek */
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 100;
+    transition: transform 0.2s ease;
+}
+
+.fab-button:active {
+    transform: scale(0.95);
+}
+
+.fab-icon {
+    font-size: var(--font-size-lg);
+    line-height: 1;
+}
+
+/* Button Icons */
+.btn-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+    background-color: var(--surface);
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-icon:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn-icon:not(:disabled):hover {
+    background-color: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+/* Editor Elements */
+.editor-element {
+    position: absolute;
+    pointer-events: auto;
+    cursor: move;
+    user-select: none;
+    transition: transform 0.1s ease;
+}
+
+.editor-element.selected {
+    outline: 2px solid var(--primary);
+}
+
+.text-element {
+    padding: var(--spacing-sm);
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-sm);
+}
+
+.logo-element img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Touch Indicators */
+.touch-indicator {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: rgba(var(--primary), 0.3);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    animation: touch-ripple 0.4s ease-out;
+}
+
+@keyframes touch-ripple {
+    0% {
+        transform: translate(-50%, -50%) scale(0.5);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(2);
+        opacity: 0;
+    }
+}
+
+/* Responsive Adjustments */
+@media (min-width: 768px) {
+    .canvas-wrapper {
+        width: 80%;
+        height: 80%;
+    }
+
+    .canvas-controls {
+        bottom: var(--spacing-xl);
+    }
+
+    .fab-button {
+        right: var(--spacing-xl);
+        bottom: var(--spacing-xl);
+    }
+}
+
+.editor-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: var(--spacing-md);
+    background-color: var(--surface);
+    box-shadow: var(--shadow-sm);
+    z-index: 100;
+}
+
+
+/* Dark Theme Adjustments */
+[data-theme="dark"] .editor-element.selected {
+    outline-color: var(--secondary);
+}
+
+[data-theme="dark"] .text-element {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.tab-content {
+    display: none;
+    padding: var(--spacing-md);
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.tab-bar {
+    display: flex;
+    border-bottom: 1px solid var(--border);
+}
+
+.tab-item {
+    flex: 1;
+    padding: var(--spacing-md);
+    text-align: center;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: var(--text);
+    cursor: pointer;
+}
+
+.tab-item.active {
+    border-bottom-color: var(--primary);
+    color: var(--primary);
+}
+
+.bottom-sheet {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--background);
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    touch-action: none;
+}
+
+.sheet-handle {
+    width: 40px;
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    margin: 8px auto;
+}
+
+.sheet-content {
+    padding: 0 16px 16px;
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+}
+
+.sheet-backdrop {
+    z-index: 999;
+}
+
+.fab-button {
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+    width: 56px;
+    height: 56px;
+    border-radius: 28px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    z-index: 1001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+}

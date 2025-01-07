@@ -1,0 +1,293 @@
+/* Touch Controls */
+.touch-control {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    background-color: var(--primary);
+    border: 2px solid white;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: var(--shadow-sm);
+    z-index: 100;
+}
+
+/* Element Controls Container */
+.element-controls {
+    position: absolute;
+    display: none;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-xs);
+    background-color: var(--surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    z-index: 90;
+}
+
+.element-controls.visible {
+    display: flex;
+}
+
+/* Transform Controls */
+.transform-controls {
+    position: absolute;
+    border: 1px solid var(--primary);
+    pointer-events: none;
+}
+
+.transform-handle {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background-color: var(--surface);
+    border: 2px solid var(--primary);
+    border-radius: 50%;
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+.transform-handle.top-left { top: -8px; left: -8px; cursor: nw-resize; }
+.transform-handle.top-right { top: -8px; right: -8px; cursor: ne-resize; }
+.transform-handle.bottom-left { bottom: -8px; left: -8px; cursor: sw-resize; }
+.transform-handle.bottom-right { bottom: -8px; right: -8px; cursor: se-resize; }
+
+/* Rotation Handle */
+.rotation-handle {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    background-color: var(--surface);
+    border: 2px solid var(--primary);
+    border-radius: 50%;
+    transform: translateX(-50%);
+    cursor: grab;
+    pointer-events: auto;
+}
+
+.rotation-handle::before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    height: 12px;
+    width: 2px;
+    background-color: var(--primary);
+    transform: translateX(-50%);
+}
+
+.rotation-handle:active {
+    cursor: grabbing;
+}
+
+/* Guide Lines */
+.guide-line {
+    position: absolute;
+    background-color: var(--primary);
+    opacity: 0.5;
+    pointer-events: none;
+    z-index: 80;
+}
+
+.guide-line.horizontal {
+    height: 1px;
+    left: 0;
+    right: 0;
+}
+
+.guide-line.vertical {
+    width: 1px;
+    top: 0;
+    bottom: 0;
+}
+
+/* Touch Feedback */
+.touch-ripple {
+    position: absolute;
+    pointer-events: none;
+    background-color: rgba(var(--primary), 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    animation: ripple 0.4s ease-out;
+}
+
+@keyframes ripple {
+    0% { transform: translate(-50%, -50%) scale(0); opacity: 1; }
+    100% { transform: translate(-50%, -50%) scale(3); opacity: 0; }
+}
+
+/* Multi-touch Gesture Area */
+.gesture-area {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 70;
+}
+
+/* Element Selection Area */
+.selection-area {
+    position: absolute;
+    border: 1px dashed var(--primary);
+    background-color: rgba(var(--primary), 0.1);
+    pointer-events: none;
+    z-index: 75;
+}
+
+/* Element Snap Indicators */
+.snap-indicator {
+    position: absolute;
+    background-color: var(--primary);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    z-index: 85;
+}
+
+.snap-indicator.visible {
+    opacity: 0.5;
+}
+
+.snap-indicator.horizontal {
+    height: 1px;
+    left: 0;
+    right: 0;
+}
+
+.snap-indicator.vertical {
+    width: 1px;
+    top: 0;
+    bottom: 0;
+}
+
+/* Distance Indicator */
+.distance-indicator {
+    position: absolute;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-sm);
+    color: var(--text);
+    pointer-events: none;
+    z-index: 85;
+}
+
+/* Element Boundaries */
+.element-boundary {
+    position: absolute;
+    border: 1px solid var(--primary);
+    pointer-events: none;
+    z-index: 80;
+}
+
+.element-boundary.selected {
+    border-style: solid;
+    border-width: 2px;
+}
+
+/* Touch Points Visualization */
+.touch-point {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid var(--primary);
+    background-color: rgba(var(--primary), 0.2);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 95;
+}
+
+/* Rotation Guide */
+.rotation-guide {
+    position: absolute;
+    width: 1px;
+    background-color: var(--primary);
+    transform-origin: bottom center;
+    pointer-events: none;
+    opacity: 0.5;
+    z-index: 85;
+}
+
+/* Scale Guides */
+.scale-guide {
+    position: absolute;
+    border: 1px dashed var(--primary);
+    pointer-events: none;
+    opacity: 0.5;
+    z-index: 85;
+}
+
+/* Element Center Point */
+.element-center {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background-color: var(--primary);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 85;
+}
+
+/* Touch Gestures Hint */
+.gesture-hint {
+    position: absolute;
+    padding: var(--spacing-sm);
+    background-color: var(--surface);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    font-size: var(--font-size-sm);
+    color: var(--text);
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    z-index: 100;
+}
+
+.gesture-hint.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .gesture-hint,
+    .snap-indicator {
+        transition: none;
+    }
+}
+
+/* Dark Theme Adjustments */
+[data-theme="dark"] .touch-point {
+    border-color: var(--secondary);
+    background-color: rgba(var(--secondary), 0.2);
+}
+
+[data-theme="dark"] .selection-area {
+    border-color: var(--secondary);
+    background-color: rgba(var(--secondary), 0.1);
+}
+
+/* Mobile-specific Adjustments */
+@media (max-width: 480px) {
+    .transform-handle {
+        width: 20px;
+        height: 20px;
+    }
+
+    .rotation-handle {
+        width: 24px;
+        height: 24px;
+        top: -36px;
+    }
+
+    .gesture-hint {
+        font-size: var(--font-size-sm);
+        padding: var(--spacing-xs) var(--spacing-sm);
+    }
+}

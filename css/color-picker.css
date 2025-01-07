@@ -1,0 +1,198 @@
+/* Color Picker Container */
+.color-picker {
+    position: relative;
+    width: 100%;
+    padding: var(--spacing-md);
+    background-color: var(--surface);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+}
+
+/* Color Wheel */
+.color-wheel {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background: conic-gradient(
+            red, yellow, lime, cyan, blue, magenta, red
+    );
+    cursor: pointer;
+    box-shadow: var(--shadow-sm);
+}
+
+.color-wheel::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 80%;
+    border-radius: 50%;
+    background: radial-gradient(
+            circle at center,
+            white,
+            transparent
+    );
+    pointer-events: none;
+}
+
+/* Color Selection Indicator */
+.color-selector {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    border: 2px solid white;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3),
+    0 2px 4px rgba(0, 0, 0, 0.2);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Color Controls Section */
+.color-controls {
+    margin-top: var(--spacing-lg);
+    padding-top: var(--spacing-md);
+    border-top: 1px solid var(--border);
+}
+
+/* Opacity Control */
+.opacity-control {
+    margin-bottom: var(--spacing-md);
+}
+
+.opacity-slider-container {
+    position: relative;
+    height: 24px;
+    margin: var(--spacing-xs) 0;
+    border-radius: var(--radius-md);
+}
+
+.opacity-slider {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.opacity-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    border-radius: var(--radius-md);
+    background-image: linear-gradient(45deg, #ccc 25%, transparent 25%),
+    linear-gradient(-45deg, #ccc 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #ccc 75%),
+    linear-gradient(-45deg, transparent 75%, #ccc 75%);
+    background-size: 10px 10px;
+    background-position: 0 0, 0 5px, 5px -5px, -5px 0px;
+    border: 1px solid var(--border);
+}
+
+.opacity-gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    border-radius: var(--radius-md);
+}
+
+/* Recent Colors */
+.recent-colors {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-md);
+    padding: var(--spacing-sm);
+    background-color: rgba(var(--surface), 0.5);
+    border-radius: var(--radius-md);
+}
+
+.color-swatch {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.color-swatch:hover {
+    transform: scale(1.1);
+}
+
+.color-swatch.active {
+    border: 2px solid var(--primary);
+}
+
+/* Color Preview */
+.color-preview {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-md);
+}
+
+.preview-swatch {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+    background-color: currentColor;
+}
+
+.preview-values {
+    font-family: var(--font-mono, monospace);
+    font-size: var(--font-size-sm);
+}
+
+/* Mobile Optimizations */
+@media (max-width: 480px) {
+    .color-wheel {
+        width: 180px;
+        height: 180px;
+    }
+
+    .color-selector {
+        width: 20px;
+        height: 20px;
+    }
+
+    .color-swatch {
+        width: 28px;
+        height: 28px;
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .color-swatch {
+        transition: none;
+    }
+}
+
+/* Dark Theme Adjustments */
+[data-theme="dark"] .opacity-background {
+    background-image: linear-gradient(45deg, #444 25%, transparent 25%),
+    linear-gradient(-45deg, #444 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #444 75%),
+    linear-gradient(-45deg, transparent 75%, #444 75%);
+}
+
+[data-theme="dark"] .color-preview {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="dark"] .recent-colors {
+    background-color: rgba(0, 0, 0, 0.2);
+}
