@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>YM Flyer Generator - Editor</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/editor.css">
+    <link rel="stylesheet" href="css/bottom-sheet.css">
+    <link rel="stylesheet" href="css/color-picker.css">
+    <link rel="stylesheet" href="css/touch-controls.css">
+</head>
+<body>
+<!-- Main Editor Container -->
+<div class="editor-container">
+    <div class="editor-header">
+        <button id="backBtn" class="btn-icon">←</button>
+        <button id="saveBtn" class="btn-icon">✓</button>
+    </div>
+
+    <!-- Canvas Area -->
+    <div class="editor-canvas">
+        <div class="canvas-wrapper">
+            <img id="backgroundImage" src="" alt="Background" class="background-image">
+            <!-- Dynamic elements (text boxes, logos) will be added here -->
+            <div id="editorElements" class="editor-elements"></div>
+        </div>
+
+        <!-- Canvas Controls -->
+        <div class="canvas-controls">
+            <button class="btn-icon btn-undo" disabled>↩</button>
+            <button class="btn-icon btn-redo" disabled>↪</button>
+            <button class="btn-icon btn-reset">↺</button>
+        </div>
+    </div>
+
+    <!-- Floating Action Button -->
+    <button class="fab-button">
+        <span class="fab-icon">+</span>
+    </button>
+
+    <!-- Bottom Sheet -->
+    <div class="bottom-sheet">
+        <div class="sheet-handle"></div>
+        <div class="sheet-content">
+            <!-- Tab Bar -->
+            <div class="tab-bar">
+                <button class="tab-item active" data-tab="text">Text</button>
+                <button class="tab-item" data-tab="logo">Logo</button>
+                <button class="tab-item" data-tab="style">Style</button>
+            </div>
+
+            <!-- Tab Contents -->
+            <div class="tab-content active" data-tab="text">
+                <div class="text-inputs">
+                    <input type="text" id="titleText" placeholder="Title">
+                    <input type="text" id="locationText" placeholder="Location">
+                    <input type="text" id="timeText" placeholder="Time">
+                    <input type="text" id="speakerText" placeholder="Speaker">
+                    <input type="text" id="topicText" placeholder="Topic">
+                    <input type="text" id="foodText" placeholder="Food">
+                    <button id="applyText" class="btn btn-primary">Apply Text</button>
+                </div>
+            </div>
+
+            <div class="tab-content" data-tab="logo">
+                <div class="logo-upload">
+                    <div class="upload-area" id="logoUploadArea">
+                        <p>Drop logos here or click to upload</p>
+                        <input type="file" id="logoInput" multiple accept="image/*" style="display: none;">
+                    </div>
+                    <div class="logo-preview"></div>
+                    <button id="applyLogos" class="btn btn-primary">Apply Logos</button>
+                </div>
+            </div>
+
+            <div class="tab-content" data-tab="style">
+                <div class="style-controls">
+                    <div class="font-size-control">
+                        <label>Font Size</label>
+                        <input type="range" class="font-size-slider" min="12" max="72" value="24">
+                        <span class="font-size-value">24px</span>
+                    </div>
+                    <div class="font-style-buttons">
+                        <button class="btn-icon" data-style="bold">B</button>
+                        <button class="btn-icon" data-style="italic">I</button>
+                    </div>
+                    <div class="color-picker"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Scripts -->
+<script type="module" src="js/utils/storage.js"></script>
+<script type="module" src="js/utils/ui.js"></script>
+<script type="module" src="js/utils/image-analysis.js"></script>
+<script type="module" src="js/utils/touch-handler.js"></script>
+<script type="module" src="js/utils/command.js"></script>
+<script type="module" src="js/utils/editor-state.js"></script>
+<script type="module" src="js/editor/bottom-sheet.js"></script>
+<script type="module" src="js/editor/color-picker.js"></script>
+<script type="module" src="js/editor/text-editor.js"></script>
+<script type="module" src="js/editor/logo-handler.js"></script>
+<script type="module" src="js/editor/canvas-manager.js"></script>
+<script type="module" src="js/editor/editor-controls.js"></script>
+<script type="module" src="js/pages/editor.js"></script>
+</body>
+</html>
