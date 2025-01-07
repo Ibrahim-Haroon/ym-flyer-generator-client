@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>YM Flyer Generator - Create</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/generation.css">
+    <link rel="stylesheet" href="css/gallery.css">
+    <link rel="stylesheet" href="css/settings.css">
+</head>
+<body>
+<!-- Main Generation Interface -->
+<div class="container main-container">
+    <div class="generation-form">
+        <div class="form-group">
+            <label for="colorPalette">Color Palette</label>
+            <input type="text" id="colorPalette" class="input"
+                   placeholder="e.g., metallic gray and emerald green">
+        </div>
+
+        <div class="providers-section">
+            <div class="provider-group">
+                <h3>Text Provider</h3>
+                <div id="textProviders" class="provider-options">
+                    <!-- Will be populated dynamically -->
+                </div>
+            </div>
+
+            <div class="provider-group">
+                <h3>Image Provider</h3>
+                <div id="imageProviders" class="provider-options">
+                    <!-- Will be populated dynamically -->
+                </div>
+            </div>
+        </div>
+
+        <button id="generateBtn" class="btn btn-primary generate-btn">
+            Generate Background
+        </button>
+    </div>
+
+    <!-- Generation Progress -->
+    <div id="generationProgress" class="progress-container" style="display: none;">
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+    </div>
+
+    <!-- Generated Images Gallery -->
+    <div id="imageGallery" class="image-gallery">
+        <!-- Will be populated dynamically -->
+    </div>
+
+    <!-- Image Preview Modal -->
+    <div id="imageModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <img id="modalImage" src="" alt="Preview">
+            <button id="downloadBtn" class="btn btn-primary">Download</button>
+        </div>
+    </div>
+</div>
+
+<!-- Settings Modal -->
+<div id="settingsModal" class="modal">
+    <div class="modal-content settings-content">
+        <span class="close-modal">&times;</span>
+        <h2>API Settings</h2>
+
+        <div class="settings-section">
+            <h3>Text Providers</h3>
+            <div id="textProviderKeys">
+                <!-- Will be populated dynamically -->
+            </div>
+        </div>
+
+        <div class="settings-section">
+            <h3>Image Providers</h3>
+            <div id="imageProviderKeys">
+                <!-- Will be populated dynamically -->
+            </div>
+        </div>
+
+        <div class="theme-toggle">
+            <label for="themeSwitch">Dark Mode</label>
+            <input type="checkbox" id="themeSwitch">
+        </div>
+
+        <button id="saveSettings" class="btn btn-primary">Save Settings</button>
+    </div>
+</div>
+
+<!-- Bottom Navigation -->
+<nav class="bottom-nav">
+    <a href="#" class="bottom-nav-item active" data-page="generate">
+        <span class="nav-icon">🎨</span>
+        <span>Generate</span>
+    </a>
+    <a href="#" class="bottom-nav-item" data-page="gallery">
+        <span class="nav-icon">🖼️</span>
+        <span>Gallery</span>
+    </a>
+    <a href="#" class="bottom-nav-item" data-page="settings">
+        <span class="nav-icon">⚙️</span>
+        <span>Settings</span>
+    </a>
+</nav>
+
+<!-- Scripts -->
+<!-- Before closing body tag -->
+<script src="js/utils/storage.js"></script>
+<script src="js/utils/ui.js"></script>
+<script src="js/api/config.js"></script>
+<script src="js/api/flyer.js"></script>
+<script src="js/api/keys.js"></script>
+<script src="js/pages/settings.js"></script>
+<script src="js/pages/home.js"></script>
+</body>
+</html>
