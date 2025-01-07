@@ -1,3 +1,9 @@
+import Storage from "/js/utils/storage.js";
+import SettingsManager from "/js/pages/settings.js";
+import UI from "/js/utils/ui.js";
+import FlyerAPI from "/js/api/flyer.js";
+import KeysAPI from "/js/api/keys.js";
+
 class HomePage {
     constructor() {
         // Initialize state
@@ -225,6 +231,20 @@ class HomePage {
                 link.click();
             };
         }
+
+        // Set up edit handler
+        const editBtn = document.getElementById('editBtn');
+        if (editBtn) {
+            editBtn.onclick = () => {
+                // Store current image data in session storage for editor
+                Storage.set('currentEditImage', {
+                    path: path,
+                    dataUrl: image.dataUrl
+                });
+                // Navigate to editor
+                window.location.href = '/editor.html';
+            };
+        }
     }
 
     initializeEventListeners() {
@@ -306,3 +326,5 @@ class HomePage {
 document.addEventListener('DOMContentLoaded', () => {
     new HomePage();
 });
+
+export default HomePage;

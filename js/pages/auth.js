@@ -1,3 +1,7 @@
+import AuthAPI from "/js/api/auth.js";
+import Storage from "/js/utils/storage.js";
+import Crypto from "/js/utils/crypto.js";
+
 class AuthPage {
     constructor() {
         this.loginForm = document.getElementById('loginForm');
@@ -83,3 +87,5 @@ class AuthPage {
 document.addEventListener('DOMContentLoaded', () => {
     new AuthPage();
 });
+
+export default AuthPage;

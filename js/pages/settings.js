@@ -1,3 +1,7 @@
+import UI from "/js/utils/ui.js";
+import FlyerAPI from "/js/api/flyer.js";
+import KeysAPI from "/js/api/keys.js";  
+
 class SettingsManager {
     constructor(homePage) {
         this.homePage = homePage;
@@ -112,3 +116,5 @@ class SettingsManager {
         }
     }
 }
+
+export default SettingsManager;
