@@ -1,3 +1,6 @@
+import API_CONFIG from "/js/api/config.js";
+import Crypto from "/js/utils/crypto.js";
+
 const AuthAPI = {
     async register(username, email, password) {
         const hashedPassword = await Crypto.hashPassword(password);
@@ -45,3 +48,5 @@ const AuthAPI = {
         return response.json();
     }
 };
+
+export default AuthAPI;

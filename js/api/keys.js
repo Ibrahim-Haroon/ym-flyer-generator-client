@@ -1,3 +1,7 @@
+import Storage from "/js/utils/storage.js";
+import UI from "/js/utils/ui.js";
+import API_CONFIG from "/js/api/config.js";
+
 const KeysAPI = {
     async getAvailableKeys() {
         const auth = Storage.getAuth();
@@ -40,3 +44,5 @@ const KeysAPI = {
         return response.json();
     }
 };
+
+export default KeysAPI;

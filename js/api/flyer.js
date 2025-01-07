@@ -1,3 +1,7 @@
+import Storage from "/js/utils/storage.js";
+import UI from "/js/utils/ui.js";
+import API_CONFIG from "/js/api/config.js";
+
 const FlyerAPI = {
     async generateBackground(colorPalette, textProvider, imageProvider) {
         const auth = Storage.getAuth();
@@ -68,3 +72,5 @@ const FlyerAPI = {
         };
     }
 };
+
+export default FlyerAPI;
