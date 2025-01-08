@@ -1,3 +1,5 @@
+import Storage from "/js/utils/storage.js";
+
 const UI = {
     checkAuth() {
         const auth = Storage.getAuth();
@@ -74,3 +76,5 @@ const UI = {
         };
     }
 };
+
+export default UI;

@@ -64,3 +64,5 @@ const Storage = {
         return image.dataUrl;
     }
 };
+
+export default Storage;

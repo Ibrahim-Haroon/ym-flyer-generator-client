@@ -25,3 +25,5 @@ const Crypto = {
         return /^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}$/.test(password);
     }
 };
+
+export default Crypto;
