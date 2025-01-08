@@ -1,43 +1,13 @@
 class SettingsManager {
-    constructor(homePage) {
-        this.homePage = homePage;
-        this.modal = document.getElementById('settingsModal');
-        this.textKeysContainer = document.getElementById('textProviderKeys');
-        this.imageKeysContainer = document.getElementById('imageProviderKeys');
-        this.saveButton = document.getElementById('saveSettings');
-
+    constructor() {
+        // Initialize containers after DOM is loaded
+        this.textKeysContainer = document.getElementById('textKeysContainer');
+        this.imageKeysContainer = document.getElementById('imageKeysContainer');
+        this.saveButton = document.getElementById('saveSettingsBtn');
         this.providers = {
             text: [],
             image: []
         };
-
-        this.initializeEventListeners();
-    }
-
-    initializeEventListeners() {
-        // Close button
-        this.modal.querySelector('.close-modal').addEventListener('click', () => {
-            UI.hideModal('settingsModal');
-        });
-
-        // Save button
-        this.saveButton.addEventListener('click', () => this.saveSettings());
-
-        // Close on outside click
-        this.modal.addEventListener('click', (e) => {
-            if (e.target === this.modal) {
-                UI.hideModal('settingsModal');
-            }
-        });
-
-        // Key visibility toggle delegation
-        document.addEventListener('click', (e) => {
-            if (e.target.matches('.toggle-visibility')) {
-                const input = e.target.previousElementSibling;
-                input.type = input.type === 'password' ? 'text' : 'password';
-                e.target.textContent = input.type === 'password' ? '👁️' : '👁️‍🗨️';
-            }
-        });
     }
 
     async initialize() {
@@ -48,9 +18,11 @@ class SettingsManager {
             ]);
 
             this.providers = availableProviders;
-            this.renderProviderKeys(userKeys.providers);
+            if (this.textKeysContainer && this.imageKeysContainer) {
+                this.renderProviderKeys(userKeys.providers);
+            }
         } catch (error) {
-            alert('Failed to load provider settings: ' + error.message);
+            console.error('Failed to load provider settings:', error);
         }
     }
 
@@ -112,3 +84,17 @@ class SettingsManager {
         }
     }
 }
+
+// Initialize settings only when needed (when settings modal is opened)
+document.addEventListener('DOMContentLoaded', () => {
+    const settingsManager = new SettingsManager();
+    
+    // Initialize settings when settings modal is opened
+    const settingsBtn = document.getElementById('settingsBtn');
+    if (settingsBtn) {
+        settingsBtn.addEventListener('click', () => {
+            UI.showModal('settingsModal');
+            settingsManager.initialize();
+        });
+    }
+});

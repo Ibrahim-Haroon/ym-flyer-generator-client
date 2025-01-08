@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>YM Flyer Generator - Customize</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/customize.css">
+</head>
+<body>
+    <div class="container event-details-container">
+        <h2>Event Details</h2>
+        <form id="eventDetailsForm" class="event-form">
+            <div class="form-group">
+                <input type="text" class="input" id="eventTitle" placeholder="Event Title" required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="input" id="eventLocation" placeholder="Location" required>
+            </div>
+            <div class="form-group">
+                <input type="datetime-local" class="input" id="eventTime" required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="input" id="eventSpeaker" placeholder="Speaker" required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="input" id="eventTopic" placeholder="Topic" required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="input" id="eventFood" placeholder="Food/Refreshments">
+            </div>
+            
+            <div class="logo-upload-section">
+                <label>Upload Logos (up to 5)</label>
+                <div class="logo-dropzone" id="logoDropzone">
+                    <div class="dropzone-message">
+                        Tap to upload or drop logos here
+                    </div>
+                    <input type="file" id="logoInput" multiple accept="image/png,image/jpeg" class="hidden">
+                </div>
+                <div id="logoPreview" class="logo-preview"></div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Continue to Editor</button>
+        </form>
+    </div>
+</body>
+</html>

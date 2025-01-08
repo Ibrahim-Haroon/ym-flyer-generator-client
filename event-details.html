@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>YM Flyer Generator - Event Details</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/customize.css">
+</head>
+<body>
+    <div class="container event-details-container">
+        <h2>Event Details</h2>
+        <form id="eventDetailsForm" class="event-form">
+            <div class="form-group">
+                <label for="eventTitle">Event Title</label>
+                <input type="text" class="input" id="eventTitle" required>
+            </div>
+
+            <div class="form-group">
+                <label for="eventLocation">Location</label>
+                <input type="text" class="input" id="eventLocation" required>
+            </div>
+
+            <div class="form-group">
+                <label for="eventTime">Date & Time</label>
+                <input type="datetime-local" class="input" id="eventTime" required>
+            </div>
+
+            <div class="form-group">
+                <label for="eventSpeaker">Speaker</label>
+                <input type="text" class="input" id="eventSpeaker" required>
+            </div>
+
+            <div class="form-group">
+                <label for="eventTopic">Topic</label>
+                <input type="text" class="input" id="eventTopic" required>
+            </div>
+
+            <div class="form-group">
+                <label for="eventFood">Food/Refreshments</label>
+                <input type="text" class="input" id="eventFood">
+            </div>
+
+            <div class="logo-upload-section">
+                <label>Upload Logos (up to 5)</label>
+                <div class="logo-dropzone" id="logoDropzone">
+                    <div class="dropzone-message">
+                        Tap to upload or drop logos here
+                    </div>
+                    <input type="file" id="logoInput" multiple accept="image/png,image/jpeg" class="hidden">
+                </div>
+                <div id="logoPreview" class="logo-preview"></div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Continue to Editor</button>
+        </form>
+    </div>
+
+    <script src="js/utils/storage.js"></script>
+    <script src="js/utils/ui.js"></script>
+    <script src="js/pages/event-details.js"></script>
+</body>
+</html>
