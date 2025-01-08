@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YM Flyer Generator - Editor</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/customize.css">
+    <link rel="stylesheet" href="css/editor.css">
+</head>
+<body>
+    <div class="editor-container">
+        <div class="editor-toolbar">
+            <button class="tool-btn" id="textTool">T</button>
+            <button class="tool-btn" id="imageTool">🖼️</button>
+            <button class="tool-btn" id="fontTool">Aa</button>
+            <input type="color" id="colorPicker" class="hidden">
+            <input type="range" id="fontSizeSlider" min="12" max="72" value="24" class="hidden">
+        </div>
+        <div class="canvas-container">
+            <div id="editorCanvas" class="editor-canvas">
+                <!-- Elements will be added here dynamically -->
+            </div>
+        </div>
+        <div class="editor-actions">
+            <button id="downloadBtn" class="btn btn-primary">Download Flyer</button>
+        </div>
+    </div>
+
+    <script src="js/utils/storage.js"></script>
+    <script src="js/utils/ui.js"></script>
+    <script src="js/api/config.js"></script>
+    <script src="js/api/flyer.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="js/pages/customize.js"></script>
+</body>
+</html>

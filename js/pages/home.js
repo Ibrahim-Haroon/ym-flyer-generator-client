@@ -160,73 +160,104 @@ class HomePage {
     }
 
     async loadGeneratedImages(paths) {
+        // Clear any existing gallery first
+        const existingGallery = document.querySelector('.image-gallery');
+        if (existingGallery) {
+            existingGallery.innerHTML = '';
+        }
+
+        const gallery = document.createElement('div');
+        gallery.className = 'image-gallery';
+
         for (const path of paths) {
             try {
                 const blob = await FlyerAPI.getBackground(path);
-                const dataUrl = await this.blobToDataURL(blob);
+                const imageUrl = URL.createObjectURL(blob);
+                
+                const item = document.createElement('div');
+                item.className = 'gallery-item';
+                const img = document.createElement('img');
+                img.src = imageUrl;
+                img.alt = "Generated background";
+                item.appendChild(img);
 
-                // Cache the image
-                Storage.cacheImage(path, dataUrl);
-
-                // Add to session images
-                this.sessionImages.unshift({ path, dataUrl });
-
-                // Update gallery
-                this.updateGallery();
+                // Add click event listener to both the container and image
+                item.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    this.showImagePreview(imageUrl, path);
+                });
+                
+                gallery.appendChild(item);
             } catch (error) {
-                console.error(`Failed to load image: ${path}`, error);
+                console.error('Error loading image:', error);
             }
         }
-    }
 
-    blobToDataURL(blob) {
-        return new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.onload = () => resolve(reader.result);
-            reader.onerror = reject;
-            reader.readAsDataURL(blob);
-        });
-    }
-
-    updateGallery() {
-        const gallery = document.getElementById('imageGallery');
-        if (!gallery) return;
-
-        gallery.innerHTML = this.sessionImages.map(image => `
-            <div class="gallery-item" data-path="${image.path}">
-                <img src="${image.dataUrl}" alt="Generated background">
-            </div>
-        `).join('');
-
-        // Add click handlers
-        gallery.querySelectorAll('.gallery-item').forEach(item => {
-            item.addEventListener('click', () => this.showImagePreview(item.dataset.path));
-        });
-    }
-
-    showImagePreview(path) {
-        const image = this.sessionImages.find(img => img.path === path);
-        if (!image) return;
-
-        const modal = document.getElementById('imageModal');
-        const modalImage = document.getElementById('modalImage');
-        if (!modal || !modalImage) return;
-
-        modalImage.src = image.dataUrl;
-        UI.showModal('imageModal');
-
-        // Set up download handler
-        const downloadBtn = document.getElementById('downloadBtn');
-        if (downloadBtn) {
-            downloadBtn.onclick = () => {
-                const link = document.createElement('a');
-                link.href = image.dataUrl;
-                link.download = `flyer-${Date.now()}.png`;
-                link.click();
-            };
+        // Replace existing gallery
+        if (existingGallery) {
+            existingGallery.replaceWith(gallery);
+        } else {
+            document.querySelector('.main-container').appendChild(gallery);
         }
     }
 
+    showImagePreview(imageUrl, path) {
+        const modal = document.createElement('div');
+        modal.className = 'modal';
+        modal.innerHTML = `
+            <div class="modal-content preview-content">
+                <span class="close-modal">&times;</span>
+                <img id="modalImage" src="${imageUrl}" alt="Preview">
+                <div class="preview-actions">
+                    <button class="btn btn-primary" id="downloadBtn">Download</button>
+                    <button class="btn btn-secondary" id="customizeBtn">Customize</button>
+                </div>
+            </div>
+        `;
+    
+        document.body.appendChild(modal);
+        
+        // Force reflow and add active class for animation
+        setTimeout(() => modal.classList.add('active'), 10);
+        
+        // Event listeners
+        modal.querySelector('.close-modal').onclick = () => {
+            modal.classList.remove('active');
+            setTimeout(() => modal.remove(), 300);
+        };
+        
+        modal.querySelector('#downloadBtn').onclick = () => this.downloadImage(imageUrl);
+        modal.querySelector('#customizeBtn').onclick = () => {
+            sessionStorage.setItem('selectedBackground', path);
+            window.location.href = 'event-details.html';
+        };
+        
+        modal.onclick = (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+                setTimeout(() => modal.remove(), 300);
+            }
+        };
+    }
+    
+    // Add download method if not exists
+    async downloadImage(imageUrl) {
+        try {
+            const response = await fetch(imageUrl);
+            const blob = await response.blob();
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'flyer-background.png';
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+            document.body.removeChild(a);
+        } catch (error) {
+            console.error('Download failed:', error);
+            alert('Failed to download image');
+        }
+    }
     initializeEventListeners() {
         // Generation
         const generateBtn = document.getElementById('generateBtn');
