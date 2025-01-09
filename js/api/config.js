@@ -1,5 +1,5 @@
 const API_CONFIG = {
-    BASE_URL: 'https://airports-river-uniprotkb-domain.trycloudflare.com/api/v1',
+    BASE_URL: 'http://localhost:8080/api/v1',
     ENDPOINTS: {
         REGISTER: '/users/register',
         LOGIN: '/users/login',
